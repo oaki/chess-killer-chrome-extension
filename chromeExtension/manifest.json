@@ -1,9 +1,10 @@
 {
   "manifest_version": 2,
   "name": "Chess killer Chrome extension",
-  "version": "0.2.1",
+  "version": "1.1.0",
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {

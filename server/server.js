@@ -3,7 +3,7 @@ const https = require('https');
 const fs = require('fs');
 const PORT = 5000;
 // const DELAY = 5000;
-const DELAY = 'infinity';
+const DELAY = "5000";
 const MULTI_VP = 3;
 const DEPTH = 25;
 // const STOCKFISH_PATH = '/usr/games/stockfish';
@@ -45,9 +45,10 @@ class EngineInterface {
     this.child.stdout.on(handler, callback);
   }
 
-  findBestMove(fen, delay) {
+  findBestMove(fen, position, delay) {
     this.fen = fen;
-    this.send(`position fen ${fen}`);
+    this.send(`stop`);
+    this.send(`position fen ${fen} moves ${position}`);
     this.send(`go movetime ${delay}`);
   }
 
@@ -91,6 +92,7 @@ io.on('connection', (socket) => {
   engine.on('data', function (buffer) {
 
     const bestmove = buffer.toString();
+    // console.log('engine.on(data)', bestmove);
     socket.emit('on_result', {
       fen: engine.fen, data: bestmove
     });
@@ -107,7 +109,7 @@ io.on('connection', (socket) => {
 
   socket.on('new_move', (data) => {
 
-    engine.findBestMove(data.FEN, DELAY);
+    engine.findBestMove(data.FEN, data.position, DELAY);
   });
 
   socket.on('disconnect', () => {
