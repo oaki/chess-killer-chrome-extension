@@ -1,3 +1,5 @@
-// const HOST = 'https://chess-analysis.ddns.net:5000/';
-export const HOST = "https://localhost:5000/";
+// export const HOST = "https://api.chess-analysis.com";
+// export const MULTI_VP = 2;
+// export const HOST = "http://localhost:8080";
+export const PATH = "/socket.io";
 export const MULTI_VP = 2;
