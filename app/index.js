@@ -11,11 +11,13 @@ try {
   let host = localStorage.getItem(LOCALSTORAGE_HOST);
   if (!host) {
     host = prompt("Please enter host", "https://api.chess-analysis.com");
+    localStorage.setItem(LOCALSTORAGE_HOST, host);
   }
 
   let token = localStorage.getItem(LOCALSTORAGE_TOKEN);
   if (!token) {
     token = prompt("Please enter token", "");
+    localStorage.setItem(LOCALSTORAGE_TOKEN, token);
   }
 
   $("body").append($banner);
